@@ -9,30 +9,31 @@ import java.util.List;
 @RestController
 public class PatientController {
 
-    HashMap<Integer,Patient> patientDb = new HashMap<>();
+    HashMap<Integer, Patient> patientDb = new HashMap<>();
 
     @PostMapping("/addPatientViaParameters")
-    public String addPatient(@RequestParam("patientId")Integer patientId,
-                             @RequestParam("name")String name,
-                             @RequestParam("disease")String disease,
-                             @RequestParam("agge")Integer agge){
+    public String addPatient(@RequestParam("patientId") Integer patientId,
+                             @RequestParam("name") String name,
+                             @RequestParam("disease") String disease,
+                             @RequestParam("age") Integer age) {
 
 
-        Patient patient = new Patient(patientId,name,disease,agge);
-        patientDb.put(patientId,patient);
+        Patient patient = new Patient(patientId, name, disease, age);
+        patientDb.put(patientId, patient);
         return "patient added successfully";
 
     }
+
     @PostMapping("/addPatientViaRequestBody")
-    public String addPatient(@RequestBody Patient patient){
+    public String addPatient(@RequestBody Patient patient) {
 
         int key = patient.getPatientId();
-        patientDb.put(key,patient);
+        patientDb.put(key, patient);
         return "patient added successfully";
     }
 
     @GetMapping("/getPatientInfo")
-    public Patient getPatient(@RequestParam("patientId")Integer patientId){
+    public Patient getPatient(@RequestParam("patientId") Integer patientId) {
 
         Patient patient = patientDb.get(patientId);
         return patient;
@@ -41,10 +42,10 @@ public class PatientController {
 
     @GetMapping("/getAllPatients")
 
-    public List<Patient> getAllPatients(){
+    public List<Patient> getAllPatients() {
 
         List<Patient> patients = new ArrayList<>();
-        for(Patient p : patientDb.values()){
+        for (Patient p : patientDb.values()) {
             patients.add(p);
         }
         return patients;
@@ -52,9 +53,9 @@ public class PatientController {
     }
 
     @GetMapping("/getPatientByName")
-    public Patient getPatientByName(@RequestParam("name")String name){
-        for(Patient p : patientDb.values()){
-            if(p.getName().equals(name)){
+    public Patient getPatientByName(@RequestParam("name") String name) {
+        for (Patient p : patientDb.values()) {
+            if (p.getName().equals(name)) {
                 return p;
             }
         }
@@ -63,11 +64,11 @@ public class PatientController {
     }
 
     @GetMapping("/getPatientsGreaterThanAge")
-    public List<Patient> getAgeGreaterThan(@RequestParam("agge")Integer agge){
+    public List<Patient> getAgeGreaterThan(@RequestParam("age") Integer age) {
 
         List<Patient> patients = new ArrayList<>();
-        for(Patient p : patientDb.values()){
-            if(p.getAgge()>agge){
+        for (Patient p : patientDb.values()) {
+            if (p.getAge() > age) {
                 patients.add(p);
             }
         }
