@@ -4,13 +4,13 @@ public class Patient {
     private int patientId;
     private String name;
     private String disease;
-    private int agge;
+    private int age;
 
-    public Patient(int patientId, String name, String disease, int agge) {
+    public Patient(int patientId, String name, String disease, int age) {
         this.patientId = patientId;
         this.name = name;
         this.disease = disease;
-        this.agge = agge;
+        this.age = age;
     }
 
     public int getPatientId() {
@@ -37,11 +37,11 @@ public class Patient {
         this.disease = disease;
     }
 
-    public int getAgge() {
-        return agge;
+    public int getAge() {
+        return age;
     }
 
-    public void setAge(int agge) {
-        this.agge = agge;
+    public void setAge(int age) {
+        this.age = age;
     }
 }
